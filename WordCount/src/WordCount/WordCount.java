@@ -13,7 +13,7 @@ public class WordCount {
         String str=arr[0];     //控制参数
         String filename=arr[1];//文本文件名称
 
-        File dir=new File("src/TESTONE");//dir为执行程序所在目录
+        File dir=new File("src/WordCount");//dir为执行程序所在目录
         File[]files=dir.listFiles();
         File file = null;     //文本所在地址
 
@@ -31,19 +31,16 @@ public class WordCount {
             BufferedReader bf = new BufferedReader(fr);
 
             char ch;
-            char fh='A';
+            char fh=' ';
             int c = 0;//字符数
             int w = 0; //单词数
 
             while((ch = (char) bf.read()) != (char)-1)//按字符读取文本内容
             {
-                c++;//累计字符数，每个回车占2个字符
-                if(!(ch>='a'&&ch<='z')&&!(ch>='A'&&ch<='Z')&&((fh>='a'&&fh<='z')||(fh>='A'&&fh<='Z')))
-                //!(ch>='a'&&ch<='z')&&!(ch>='A'&&ch<='Z')&&((fh>='a'&&fh<='z')||(fh>='A'&&fh<='Z'))
-
+                c++;//统计字符数，回车占2个字符
+                if((ch>=33&&ch<=43)||(ch>=45&&ch<=126)&&((fh==' ')||(fh=='.')))
                 {
-
-                    w++;//累计单词数
+                    w++;//统计单词数
                 }
                 fh=ch;
             }
